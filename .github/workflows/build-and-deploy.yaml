@@ -103,6 +103,8 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az config set bicep.use_binary_from_path=false
+            az bicep install
             az group create -g ${{ secrets.RESOURCE_GROUP }} -l eastus
             az deployment group create -g ${{ secrets.RESOURCE_GROUP }} -f ./deploy/main.bicep \
              -p \
